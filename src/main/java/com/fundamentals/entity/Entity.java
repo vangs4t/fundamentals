@@ -1,20 +1,22 @@
 package com.fundamentals.entity;
 
-import com.fundamentals.repository.PositionLabels;
+import com.fundamentals.utility.PositionLabels;
 
 public class Entity {
     String names;
     String id;
     PositionLabels position;
 
+    public Entity(String names, String id, PositionLabels labels){
+        this.names = names;
+        this.id = id;
+        this.position = labels;
+    }
     public Entity(String names, String id){
         this.names = names;
         this.id = id;
     }
-    Entity(String names){
-        this.names = names;
-    }
-    Entity(){
+    public Entity(){
 
     }
 

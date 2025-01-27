@@ -1,9 +1,11 @@
 package com.fundamentals.repository;
 
+import static com.fundamentals.utility.PositionLabels.*;
+
 import java.util.ArrayList;
 
 import com.fundamentals.entity.Entity;
-import static com.fundamentals.repository.PositionLabels.*;
+import com.fundamentals.utility.PositionLabels;
 
 public class EmployeRepoImpl  implements EmployeRepo{
 
@@ -14,6 +16,7 @@ public class EmployeRepoImpl  implements EmployeRepo{
     public EmployeRepoImpl(Entity entity){
         this.entity = entity;
     }
+
     @Override
     public ArrayList<Entity> getAllEntities() {
         return list;
@@ -22,31 +25,31 @@ public class EmployeRepoImpl  implements EmployeRepo{
 
     @Override
     public void addNewEmploye(String employeNames, String employeId) {
-        entity.setNames(employeNames);
-        entity.setId(employeId);
+        PositionLabels labels = KARYAWAN;
+        list.add(new Entity(employeNames, employeId, labels));
     }
 
     @Override
     public void removeOldEmploye(String employeId) {
         int numbers = 0;
-        for (int i = 0; i < repo.getAllEntities().size(); i++) {
-            if (repo.getAllEntities().get(i).equals(employeId)) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).equals(employeId)) {
                 numbers = i;
             }
         }
-        repo.getAllEntities().remove(numbers);
+        list.remove(numbers);
     }
 
     @Override
     public void promotionEmploye(String id) { // cari cara untuk mengubah label sebelumnya
-        for (int i = 0; i < repo.getAllEntities().size(); i++) {
-            if (repo.getAllEntities().get(i).equals(id)) {
-                if (entity.getPosition().equals(KARYAWAN)) {
-                    entity.setPosition(LEADER);
-                } else if (entity.getPosition().equals(LEADER)) {
-                    entity.setPosition(MANAGER);
-                } else if (entity.getPosition().equals(MANAGER)) {
-                    entity.setPosition(SECRETARIS);
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getId().equals(id)) {
+                if (list.get(i).getPosition().equals(KARYAWAN)) {
+                    list.get(i).setPosition(LEADER);
+                } else if (list.get(i).getPosition().equals(LEADER)) {
+                    list.get(i).setPosition(MANAGER);
+                } else if (list.get(i).getPosition().equals(MANAGER)) {
+                    list.get(i).setPosition(SECRETARIS);
                 }
             }
         }

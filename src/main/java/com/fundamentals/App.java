@@ -12,7 +12,14 @@ public class App {
         Entity entity = new Entitas("Naufal","K100");
         EmployeRepoImpl src = new EmployeRepoImpl(entity);
         src.addNewEmploye("Kesatria", "K101");
+        src.addNewEmploye("Prajurit", "K102");
         // System.out.println(entity.getNames());
-        System.out.println(src.getAllEntities().get(0));
+        src.promotionEmploye("K102");
+        src.removeOldEmploye("k101");
+        for (var i : src.getAllEntities()){
+            System.out.println(i.getNames());
+            System.out.println(i.getId());
+            System.out.println(i.getPosition());
+        }
     }
 }
