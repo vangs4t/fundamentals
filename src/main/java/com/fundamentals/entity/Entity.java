@@ -7,12 +7,12 @@ public class Entity {
     String id;
     PositionLabels position;
 
-    Entity(String names, String id){
-        names = this.names;
-        id = this.id;
+    public Entity(String names, String id){
+        this.names = names;
+        this.id = id;
     }
     Entity(String names){
-        names = this.names;
+        this.names = names;
     }
     Entity(){
 
@@ -22,7 +22,7 @@ public class Entity {
         return this.names;
     }
     public void setNames(String names){
-        names = this.names;
+        this.names = names;
     }
 
     public String getId(){
@@ -30,7 +30,7 @@ public class Entity {
     }
 
     public void setId(String id){
-        id = this.id;
+        this.id = id;
     }
 
     public PositionLabels getPosition(){
@@ -38,6 +38,6 @@ public class Entity {
     }
 
     public void setPosition(PositionLabels position){
-        position = this.position;
+        this.position = position;
     }
 }

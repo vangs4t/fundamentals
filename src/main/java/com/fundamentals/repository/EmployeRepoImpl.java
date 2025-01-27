@@ -7,24 +7,18 @@ import static com.fundamentals.repository.PositionLabels.*;
 
 public class EmployeRepoImpl  implements EmployeRepo{
 
-    // ArrayList list = new ArrayList<>();
+    ArrayList<Entity> list = new ArrayList<>();
     Entity entity;
     EmployeRepo repo;
 
+    public EmployeRepoImpl(Entity entity){
+        this.entity = entity;
+    }
     @Override
     public ArrayList<Entity> getAllEntities() {
-        return repo.getAllEntities();
+        return list;
     }
 
-    @Override
-    public String employeNames(String employeNames) {
-        return entity.getNames(); 
-    }
-
-    @Override
-    public String employeId(String employeId) {
-        return entity.getId();
-    }
 
     @Override
     public void addNewEmploye(String employeNames, String employeId) {
@@ -47,7 +41,13 @@ public class EmployeRepoImpl  implements EmployeRepo{
     public void promotionEmploye(String id) { // cari cara untuk mengubah label sebelumnya
         for (int i = 0; i < repo.getAllEntities().size(); i++) {
             if (repo.getAllEntities().get(i).equals(id)) {
-                entity.setPosition(KARYAWAN); // menaikan status label
+                if (entity.getPosition().equals(KARYAWAN)) {
+                    entity.setPosition(LEADER);
+                } else if (entity.getPosition().equals(LEADER)) {
+                    entity.setPosition(MANAGER);
+                } else if (entity.getPosition().equals(MANAGER)) {
+                    entity.setPosition(SECRETARIS);
+                }
             }
         }
     }
